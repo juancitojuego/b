@@ -1,4 +1,14 @@
-import mongoose from 'mongoose';
+import mongoose, { Mongoose } from 'mongoose';
+
+// Augment the global scope to include 'mongoose'
+// This is used to cache the Mongoose connection across hot reloads in development.
+declare global {
+  // eslint-disable-next-line no-var
+  var mongoose: { // Declaring 'mongoose' on the global scope for TypeScript
+    conn: Mongoose | null;
+    promise: Promise<Mongoose> | null;
+  };
+}
 
 // Placeholder for the MongoDB connection URI.
 // IMPORTANT: This should be replaced with an environment variable in a real application.
